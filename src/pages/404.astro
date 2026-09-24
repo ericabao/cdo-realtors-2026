@@ -1,0 +1,41 @@
+---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+import { Image } from "astro:assets";
+import fourOhFourBanner from "../assets/404.webp";
+---
+
+<DefaultLayout title="CDO Realtors" description="Property Listing">
+  <main class="grid items-center bg-gray-800 h-screen">
+    <div class="flex flex-col items-center justify-center gap-6 min-h-scree">
+      <div class="max-w-md">
+        <Image src={fourOhFourBanner} alt=" " class="w-full" />
+      </div>
+
+      <div class="mx-auto text-neutral-50">
+        <h3 class="text-4xl font-bold uppercase">We lost this page</h3>
+        <p class="mt-2 max-w-sm">
+          We searched high and low but couldn't find what you're looking for.
+          Let's find a better place for you to go.
+        </p>
+        <div class="flex items-center justify-center flex-col">
+          <a href="/" class="btn mt-6">Go Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</DefaultLayout>
+
+<style>
+  .btn {
+    background-color: #0079c2;
+    border: 1px solid #0079c2;
+    border-radius: 9999px;
+    padding: 12px 24px;
+    color: #d9dadd;
+  }
+
+  .btn:hover {
+    background-color: #3cafdd;
+    border: 1px solid #3cafdd;
+  }
+</style>

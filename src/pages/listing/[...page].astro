@@ -1,0 +1,101 @@
+---
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+import { Image } from "astro:assets";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import Button from "../../components/Button.astro";
+import Pagination from "../../components/Pagination.astro";
+import Search from "astro-pagefind/components/Search.astro";
+
+import { getCollection, type CollectionEntry } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = await getCollection("listing");
+
+  return paginate(posts, {
+    pageSize: 6,
+  });
+};
+
+type Props = {
+  page: Page<CollectionEntry<"listing">>;
+};
+
+const { page } = Astro.props;
+---
+
+<DefaultLayout
+  title="CDO Realtors"
+  description="CDO Realtors - Property Listing Page"
+>
+  <Header />
+
+  <div class="p-10 mx-auto max-w-7xl md:py-10 md:px-0">
+    <div class="p-6 z-10 bg-primary-900 rounded-md">
+      <h3 class="text-4xl font-semibold text-neutral-50">
+        Discover the latest properties in the real estate market
+      </h3>
+      <div class="py-6">
+        <Search
+          instance="search"
+          className="pagefind-ui"
+          searchboxOptions={{ placeholder: "search" }}
+        />
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="mx-auto max-w-7xl py-10" data-pagefind-ignore>
+      <ul class="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {
+          page.data.map((post) => (
+            <li>
+              <a href={`/listing/${post.id}/`}>
+                {post.data.heroImage && (
+                  <Image
+                    width={720}
+                    height={360}
+                    src={post.data.heroImage}
+                    alt={post.data.heroImageAlt}
+                  />
+                )}
+                <div class="bg-primary-100 p-5 rounded-bl-md rounded-br-md flex flex-col gap-5">
+                  <h4 class="title">{post.data.title}</h4>
+
+                  <p class="address">{post.data.address}</p>
+
+                  <ul class="flex gap-1 flex-wrap">
+                    {post.data.tags.map((tag: unknown) => (
+                      <li class="bg-cdoRealtorsNeutral-100 rounded-md px-2 py-1 text-cdoRealtorsNeutral-800 text-pretty">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div class="inline-block py-5">
+                    <Button
+                      href={`/listing/${post.id}/`}
+                      variant="primary"
+                      type="button"
+                    >
+                      {post.data.button}
+                    </Button>
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+
+  <Pagination
+    prevUrl={page.url.prev}
+    currentPage={page.currentPage}
+    nextUrl={page.url.next}
+  />
+  <Footer />
+</DefaultLayout>

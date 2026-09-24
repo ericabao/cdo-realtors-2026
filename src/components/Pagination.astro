@@ -1,0 +1,33 @@
+---
+// component imports
+import Button from "./Button.astro";
+
+const { prevUrl, nextUrl, currentPage } = Astro.props;
+---
+
+<nav
+  aria-label="Listing Pages"
+  class="flex items-center justify-center bg-primary-500 py-10"
+>
+  {
+    prevUrl && (
+      <Button href={prevUrl} variant="primary" type="button">
+        &larr; Previous
+      </Button>
+    )
+  }
+  {
+    currentPage && (
+      <div class="rounded-full mx-3 bg-primary-600 w-11 h-11 grid items-center justify-center">
+        <p class="text-neutral-50">{currentPage}</p>
+      </div>
+    )
+  }
+  {
+    nextUrl && (
+      <Button href={nextUrl} variant="primary" type="button">
+        Next &rarr;
+      </Button>
+    )
+  }
+</nav>

@@ -1,0 +1,47 @@
+---
+import Button from "./Button.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+const posts = await getCollection("listing", ({ data }) => {
+  return data.featured;
+});
+---
+
+{
+  posts.map((post) => (
+    <li>
+      <a href={`/listing/${post.id}/`}>
+        {post.data.heroImage && (
+          <Image
+            width={720}
+            height={360}
+            src={post.data.heroImage}
+            alt={post.data.heroImageAlt}
+          />
+        )}
+        <div class="bg-neutral-200 rounded-md p-5 rounded-bl-md rounded-br-md flex flex-col gap-2">
+          <h4 class="title">{post.data.title}</h4>
+          <p class="pb-2 leading-tight">{post.data.address}</p>
+
+          <ol class="flex gap-1 flex-wrap">
+            {post.data.tags.map((tag: unknown) => (
+              <li class="bg-neutral-100 rounded-md px-2 py-1 text-neutral-800 text-pretty">
+                {tag}
+              </li>
+            ))}
+          </ol>
+
+          <div class="inline-block py-5">
+            <Button
+              href={`/listing/${post.id}/`}
+              variant="primary"
+              type="button"
+            >
+              {post.data.button}
+            </Button>
+          </div>
+        </div>
+      </a>
+    </li>
+  ))
+}

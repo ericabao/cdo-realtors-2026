@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import contactUsBanner from "../assets/contactPageBanner.webp";
+---
+
+<div
+  class="flex items-center gap-0 justify-start md:flex-row flex-col max-w-7xl mx-auto"
+>
+  <div class="basis-7/12">
+    <Image src={contactUsBanner} alt=" " class="md:w-full md:rounded-l-md" />
+  </div>
+  <div class="bg-neutral-100 p-10 basis-5/12 md:rounded-r-md h-[541px]">
+    <header>
+      <p class="mb-5 text-center uppercase text-primary-600">Got a question?</p>
+      <p class="mb-5 text-3xl text-center">
+        Contact <span class="font-bold text-tnOrange-500 uppercase"
+          >CDO Realtors
+        </span>
+        <p class="leading-tight">
+          We’re here to help and answer any question you might have. We look
+          forward to hearing from you 😊
+        </p>
+      </p>
+      <div class="feedback-form">
+        <form
+          data-netlify="true"
+          netlify-honeypot
+          name="feedback"
+          method="POST"
+          action="/success"
+          class="flex flex-col gap-3"
+        >
+          <div class="input-group flex items-start">
+            <p class="hidden">
+              <label>
+                Don’t fill this out if you’re human: <input name="bot-field" />
+              </label>
+            </p>
+            <input type="hidden" name="form-name" value="feedback" />
+          </div>
+
+          <div class="input-group flex items-start flex-col">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              class="py-2 px-4 rounded-md w-full border border-neutral-200"
+              type="text"
+              name="name"
+            />
+          </div>
+
+          <div class="input-group flex items-start flex-col">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              class="py-2 px-4 rounded-md w-full border border-neutral-200"
+              type="email"
+              name="email"
+              required
+            />
+          </div>
+
+          <div class="input-group flex items-start flex-col">
+            <label for="feedback">Message</label>
+            <textarea
+              id="feedback"
+              class="py-2 px-4 rounded-md w-full border border-neutral-200"
+              wrap="soft"
+              name="feedback"
+              required></textarea>
+          </div>
+
+          <div class="inline-block">
+            <button
+              type="submit"
+              class="py-2 px-4 bg-primary-900 rounded-md hover:bg-primary-800 text-neutral-50 text-lg font-semibold"
+              >Send Message</button
+            >
+          </div>
+        </form>
+      </div>
+    </header>
+  </div>
+  <style>
+    .hidden {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+  </style>
+</div>

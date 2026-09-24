@@ -1,0 +1,35 @@
+---
+import Button from "../components/Button.astro";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  body: string;
+  imagePath: string;
+  altText: string;
+  href: string;
+}
+
+const { imagePath, altText, title, body, href } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif,svg,webp,avif}",
+);
+if (!images[imagePath])
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,svg,webp,avif}"`,
+  );
+---
+
+<div
+  class="flex flex-col gap-5 p-10 text-left border border-primary-100 rounded-md bg-primary-50"
+>
+  <div class="w-20 p-3 rounded-md bg-primary-900">
+    <Image loading="lazy" src={images[imagePath]()} alt={altText} />
+  </div>
+  <h3 class="text-xl uppercase font-bold">{title}</h3>
+  <p>{body}</p>
+  <div class="pt-8">
+    <Button href="#" variant="primary" type="button">{href}</Button>
+  </div>
+</div>

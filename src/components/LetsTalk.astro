@@ -1,0 +1,30 @@
+---
+import Button from "./Button.astro";
+import { getImage } from "astro:assets";
+import getStartedBanner from "../assets/cta-banner.avif";
+const optimizedBackgroundImage = await getImage({ src: getStartedBanner });
+---
+
+<section
+  style={`background-image: url('${optimizedBackgroundImage.src}')`}
+  class="bg-no-repeat bg-cover"
+>
+  <div
+    class="mx-auto max-w-7xl h-[475px] text-neutral-50 grid items-center px-10 md:px-0"
+  >
+    <div class="w-full py-6 md:w-3/5">
+      <h2 class="text-4xl font-semibold">Let's talk</h2>
+
+      <p class="pt-4 text-lg">
+        Whenever you’re ready, a CDO Property Consultant is available to walk
+        you through your options, answer your questions, and help you make more
+        informed decisions about your property
+      </p>
+      <div class="pt-8">
+        <Button href="tel:1234567890" variant="secondary" type="button"
+          >Call: 123 456 7890</Button
+        >
+      </div>
+    </div>
+  </div>
+</section>

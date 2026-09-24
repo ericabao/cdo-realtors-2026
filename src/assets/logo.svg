@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 128 128">
+  <g>
+    <g id="Layer_1">
+      <path d="M117.7,69.7c0,5.2-.7,10.3-2.2,15.1l-51-55.9L13.5,84.8c-1.4-4.8-2.2-9.9-2.2-15.1,0-29.4,23.8-53.2,53.2-53.2s53.2,23.8,53.2,53.2Z"/>
+      <rect x="46.7" y="67.4" width="14.8" height="14.8"/>
+      <rect x="67.4" y="67.4" width="14.8" height="14.8"/>
+      <rect x="46.7" y="87.2" width="14.8" height="14.8"/>
+      <rect x="67.4" y="87.2" width="14.8" height="14.8"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+---
+import Button from "../components/Button.astro";
+---
+
+<div
+  class="bg-[url(../assets/hero-mobile.webp)] md:bg-[url(../assets/hero-desktop.webp)] bg-no-repeat bg-cover"
+>
+  <div
+    class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between md:min-h-[575px] py-10"
+  >
+    <div
+      class="p-6 bg-transparent md:p-6 text-primary-900 md:bg-neutral-100/75 md:text-left md:max-w-2xl rounded-md"
+    >
+      <h1 class="pb-5 text-4xl font-bold md:text-6xl">
+        Effortless buying and selling at your fingertips
+      </h1>
+      <p class="text-lg">
+        Everything you need to buy or sell your property efficiently is now
+        consolidated on one platform.
+      </p>
+    </div>
+    <div class="max-w-sm p-6 text-center rounded-md bg-neutral-100">
+      <h2 class="text-2xl font-bold pb-3">How can we help you?</h2>
+      <p class="leading-4 pb-3">
+        Answer a few quick questions to see how we can help you.
+      </p>
+      <div class="flex flex-col gap-3 py-3">
+        <Button href="#" variant="primary" type="button">I'm selling</Button>
+        <Button href="#" variant="primary" type="button">I'm buying</Button>
+        <Button href="#" variant="primary" type="button"
+          >I'm selling & buying</Button
+        >
+      </div>
+      <div
+        tabindex="0"
+        class="collapse collapse-arrow bg-base-100 border-base-300 border"
+      >
+        <div class="collapse-title font-semibold">
+          I'm a Lender or an Agent?
+        </div>
+        <div
+          class="collapse-content text-sm grid gap-3 transition-all ease-in-out pt-3"
+        >
+          <Button href="#" variant="secondary" type="button"
+            >I'm a Lender</Button
+          >
+          <Button href="#" variant="secondary" type="button"
+            >I'm an Agent</Button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

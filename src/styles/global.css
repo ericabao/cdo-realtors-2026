@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "@tailwindcss/typography";
+
+@theme {
+
+    --color-primary-50: #e6ebef;
+    --color-primary-100: #cdd7df;    
+    --color-primary-200: #b4c3cf;
+    --color-primary-300: #9bafc0;
+    --color-primary-400: #839bb0;
+    --color-primary-500: #6a87a0;
+    --color-primary-600: #517391;
+    --color-primary-700: #385e81;
+    --color-primary-800: #1f4b71;
+    --color-primary-900: #073762;
+
+    --color-secondary-500: #D4AF37;
+    --color-secondary-600: #AA8C2C;
+    --color-secondary-700: #7F6921;
+    --color-secondary-800: #554616;
+    --color-secondary-900: #2A230B;
+}
+
+@theme {
+  --animate-marquee: marquee 60s linear infinite;
+  
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+}
+
+/* Optional helper to pause scrolling on hover */
+.pause-hover:hover .animate-marquee {
+  animation-play-state: paused;
+}

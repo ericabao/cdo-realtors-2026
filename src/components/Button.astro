@@ -1,0 +1,49 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+// Extend default HTML button attributes to remain fully accessible and standard-compliant
+interface Props extends HTMLAttributes<"button"> {
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
+  href?: string; // If provided, the button automatically renders as an 'a' anchor tag
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  class: className,
+  ...rest
+} = Astro.props;
+
+// Dynamically determine the HTML tag based on whether it is a button or a link
+const Tag = href ? "a" : "button";
+
+// Style mapping blocks
+const baseStyles =
+  "inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+
+const variants = {
+  primary:
+    "bg-primary-800 text-white hover:bg-primary-900 focus:ring-primary-500",
+  secondary:
+    "bg-secondary-700 text-white hover:bg-secondary-700 focus:ring-secondary-500",
+  outline: "bg-transparent text-neutral-10 hover:underline",
+  ghost: "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500",
+};
+
+const sizes = {
+  sm: "px-3 py-1.5 text-sm",
+  md: "px-4 py-2 text-base",
+  lg: "px-5 py-2.5 text-lg",
+};
+---
+
+<Tag
+  href={href}
+  class:list={[baseStyles, variants[variant], sizes[size], className]}
+  type={href ? undefined : rest.type || "button"}
+  {...rest}
+>
+  <slot />
+</Tag>
